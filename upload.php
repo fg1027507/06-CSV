@@ -1,3 +1,19 @@
+<?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $uploadedFile = $_FILES['datafile'];
+        // print_r($uploadedFile);
+        //build the permanent location for the image.
+        $filename = basename($uploadedFile['name']);
+        echo($filename);
+        $destination = __DIR__ . '/uploads' . $filename;
+        echo ($destination);
+        //move the file out of phph's temporary upload location.
+        move_uploaded_file(
+            $uploadedFile['tmp_name'],
+            $destination
+        );
+    }
+?>
 <!doctype html>
 <html lang="en">
 
